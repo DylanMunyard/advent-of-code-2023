@@ -1,0 +1,74 @@
+﻿@page "/"
+@attribute [StreamRendering(true)]
+
+@inject PuzzleApiClient PuzzleApi
+
+<PageTitle>AoC 2023</PageTitle>
+
+<h1>Puzzles</h1>
+
+<p><a target="_blank" href="https://adventofcode.com/">Advent of Code</a> <code>0x07E7|2023 🎄</code></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Day</th>
+        <th>Part 1</th>
+        <th>Part 2</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var day in _solutions)
+    {
+        <tr>
+            <td>@day.Day</td>
+            <td>@(day.Part1.Loading ? "Loading" : day.Part1.Answer)</td>
+            <td>@(day.Part2.Loading ? "Loading" : day.Part2.Answer)</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code {
+
+    private List<Puzzle> _solutions = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        foreach (var day in Enumerable.Range(1, 31))
+        {
+            _solutions.Add(new Puzzle(day));
+        }
+
+        await LoadSolutions();
+    }
+
+    private async Task LoadSolutions()
+    {
+        var day1 = _solutions.First();
+        day1.Part1.Loading = true;
+        day1.Part2.Loading = true;
+        
+        day1.Part1.Answer = await PuzzleApi.GetSolution(day1.Day, 1);
+        day1.Part1.Loading = false;
+        
+        day1.Part2.Answer = await PuzzleApi.GetSolution(day1.Day, 2);
+        day1.Part2.Loading = false;
+    }
+
+    private class Puzzle(int day)
+    {
+        public int Day { get; set; } = day;
+
+        public Solution Part1 { get; set; } = new();
+
+        public Solution Part2 { get; set; } = new();
+    }
+
+    private class Solution
+    {
+        public bool Loading { get; set; } = false;
+
+        public string? Answer { get; set; } = "";
+    }
+}
