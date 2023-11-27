@@ -22,8 +22,8 @@
     {
         <tr>
             <td>@day.Day</td>
-            <td>@(day.Part1.Loading ? "Loading" : day.Part1.Answer)</td>
-            <td>@(day.Part2.Loading ? "Loading" : day.Part2.Answer)</td>
+            <td>@(string.IsNullOrEmpty(day.Part1.Answer) ? "Loading" : day.Part1.Answer)</td>
+            <td>@(string.IsNullOrEmpty(day.Part2.Answer) ? "Loading" : day.Part2.Answer)</td>
         </tr>
     }
     </tbody>
@@ -31,7 +31,7 @@
 
 @code {
 
-    private List<Puzzle> _solutions = new();
+    private readonly List<Puzzle> _solutions = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -45,15 +45,12 @@
 
     private async Task LoadSolutions()
     {
-        var day1 = _solutions.First();
-        day1.Part1.Loading = true;
-        day1.Part2.Loading = true;
-        
-        day1.Part1.Answer = await PuzzleApi.GetSolution(day1.Day, 1);
-        day1.Part1.Loading = false;
-        
-        day1.Part2.Answer = await PuzzleApi.GetSolution(day1.Day, 2);
-        day1.Part2.Loading = false;
+        foreach (var day in Enumerable.Range(1, 1))
+        {
+            var puzzle = _solutions[day - 1];
+            puzzle.Part1.Answer = await PuzzleApi.GetSolution(puzzle.Day, 1);
+            puzzle.Part2.Answer = await PuzzleApi.GetSolution(puzzle.Day, 2);
+        }
     }
 
     private class Puzzle(int day)
@@ -67,8 +64,6 @@
 
     private class Solution
     {
-        public bool Loading { get; set; } = false;
-
         public string? Answer { get; set; } = "";
     }
 }
