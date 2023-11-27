@@ -53,7 +53,7 @@ public class Api
         }
         catch (NotImplementedException ex)
         {
-            _logger.Error("lazy! day {Day} part {Part} not implemented", day, part);
+            _logger.Error(ex, "lazy! day {Day} part {Part} not implemented", day, part);
             return 0;
         }
     }
