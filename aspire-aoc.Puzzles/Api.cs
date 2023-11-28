@@ -44,8 +44,8 @@ public class Api
         {
             var solution = part switch
             {
-                1 => await puzzleService.SolvePart1(),
-                2 => await puzzleService.SolvePart2(),
+                1 => await puzzleService.SolvePart1(false),
+                2 => await puzzleService.SolvePart2(false),
                 _ => throw new ArgumentOutOfRangeException(nameof(part), part, "What part am I solving? 1 or 2?")
             };
             await _cache.SetAsync(cacheKey, System.Text.Encoding.UTF8.GetBytes(solution.ToString()));

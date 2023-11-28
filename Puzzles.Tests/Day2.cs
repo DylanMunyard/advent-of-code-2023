@@ -1,20 +1,20 @@
-using aspire_aoc.Puzzles.Day1;
+using aspire_aoc.Puzzles.Day2;
 using FluentAssertions;
 
 namespace Puzzles.Tests;
 
-public class Day1Tests
+public class Day2Tests
 {
-    private readonly Day1 _puzzle;
+    private readonly Day2 _puzzle;
 
-    public Day1Tests()
+    public Day2Tests()
     {
-        _puzzle = new Day1();
+        _puzzle = new Day2();
     }
     
     [Theory]
-    [InlineData(true, 24000)]
-    [InlineData(false, 69177)]
+    [InlineData(true, 15)]
+    [InlineData(false, 11666)]
     public async Task Part1(bool solveSample, int answer)
     {
         // Act
@@ -25,8 +25,8 @@ public class Day1Tests
     }
     
     [Theory]
-    [InlineData(true, 45000)]
-    [InlineData(false, 207456)]
+    [InlineData(true, 12)]
+    [InlineData(false, 12767)]
     public async Task Part2(bool solveSample, int answer)
     {
         // Act

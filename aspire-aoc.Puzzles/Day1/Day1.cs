@@ -1,18 +1,20 @@
-using System.Runtime.CompilerServices;
-using aspire_aoc.Puzzles.Extensions;
-
 namespace aspire_aoc.Puzzles.Day1;
 
 public class Day1 : IPuzzleService
 {
-    public int Day => 1;
+    private readonly PuzzleService _puzzleService;
 
-    private async Task<List<int>> Elves()
+    public Day1()
+    {
+        _puzzleService = new PuzzleService(this);
+    }
+    
+    private async Task<List<int>> Solve(bool solveSample)
     {
         var calories = new List<int>();
 
         var total = 0;
-        foreach (var calorie in await this.InputLines())
+        foreach (var calorie in await _puzzleService.PuzzleInput(solveSample))
         {
             if (string.IsNullOrEmpty(calorie))
             {
@@ -23,19 +25,20 @@ public class Day1 : IPuzzleService
 
             total += int.Parse(calorie);
         }
+        calories.Add(total); // last line
 
         return calories;
     }
 
-    public async Task<int> SolvePart1()
+    public async Task<int> SolvePart1(bool solveSample)
     {
-        var elves = await Elves();
+        var elves = await Solve(solveSample);
         return elves.Max();
     }
 
-    public async Task<int> SolvePart2()
+    public async Task<int> SolvePart2(bool solveSample)
     {
-        var elves = await Elves();
+        var elves = await Solve(solveSample);
         return elves.OrderDescending().Take(3).Sum();
     }
 }
