@@ -21,7 +21,7 @@ public class Day4Tests
     
     [Theory]
     [InlineData(true, 4)]
-    [InlineData(false, 2752)]
+    [InlineData(false, 895)]
     public async Task Part2(bool solveSample, int answer)
     {
         // Act

@@ -11,4 +11,15 @@
       <PackageReference Include="BenchmarkDotNet" Version="0.13.10" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\aspire-aoc.Puzzles\aspire-aoc.Puzzles.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\aspire-aoc.Puzzles\Day3\input.txt">
+            <Link>Day3\input.txt</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
 </Project>

@@ -1,3 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using BenchmarkDotNet.Running;
+using Puzzles.Benchmarks;
 
-Console.WriteLine("Hello, World!");
+BenchmarkRunner.Run<Day3Tests>();

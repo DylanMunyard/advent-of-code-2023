@@ -45,7 +45,7 @@
 
     private async Task LoadSolutions()
     {
-        foreach (var day in Enumerable.Range(1, 2))
+        foreach (var day in Enumerable.Range(1, 31))
         {
             var puzzle = _solutions[day - 1];
             puzzle.Part1.Answer = await PuzzleApi.GetSolution(puzzle.Day, 1);
