@@ -16,8 +16,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="..\aspire-aoc.Puzzles\Day3\input.txt">
-            <Link>Day3\input.txt</Link>
+        <Content Include="..\aspire-aoc.Puzzles\Day1\input.txt">
+            <Link>Day1\input.txt</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>

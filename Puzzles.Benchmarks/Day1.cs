@@ -1,19 +1,19 @@
 ﻿using aspire_aoc.Puzzles;
-using aspire_aoc.Puzzles.Day3;
+using aspire_aoc.Puzzles.Day1;
 using BenchmarkDotNet.Attributes;
 
 namespace Puzzles.Benchmarks;
 
 [SimpleJob]
 [MemoryDiagnoser]
-public class Day3Tests
+public class Day1Tests
 {
     private IPuzzleService _puzzle = null!;
     
     [GlobalSetup]
     public void Setup()
     {
-        _puzzle = new Day3();
+        _puzzle = new Day1();
     }
 
     [Benchmark]

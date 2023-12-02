@@ -13,8 +13,8 @@ public class Day1Tests
     }
     
     [Theory]
-    [InlineData(true, 24000)]
-    [InlineData(false, 69177)]
+    [InlineData(true, 142)]
+    [InlineData(false, 56108)]
     public async Task Part1(bool solveSample, int answer)
     {
         // Act
@@ -25,8 +25,8 @@ public class Day1Tests
     }
     
     [Theory]
-    [InlineData(true, 45000)]
-    [InlineData(false, 207456)]
+    [InlineData(true, 281)]
+    [InlineData(false, 55652)]
     public async Task Part2(bool solveSample, int answer)
     {
         // Act

@@ -10,8 +10,12 @@ public interface IPuzzleService
 
 public class PuzzleService(IPuzzleService puzzleService)
 {
-    private readonly Lazy<Task<string[]>> _input = new (puzzleService.InputLines());
-    private readonly Lazy<Task<string[]>> _sample = new (puzzleService.SampleInputLines());
-    
-    public Task<string[]> PuzzleInput(bool solveSample = false) => !solveSample ? _input.Value : _sample.Value;
+    private readonly Lazy<Task<string[]>> _input = new(puzzleService.InputLines());
+
+    private Lazy<Task<string[]>> Sample(int part)
+    {
+        return new Lazy<Task<string[]>>(puzzleService.SampleInputLines(part));
+    }
+
+    public Task<string[]> PuzzleInput(bool solveSample, int part) => !solveSample ? _input.Value : Sample(part).Value;
 }

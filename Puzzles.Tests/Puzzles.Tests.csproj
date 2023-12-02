@@ -28,22 +28,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Day2\sample.txt">
+      <None Update="Day1\sample-part2.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="Day1\sample.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Day2\input.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Day2\sample.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Day3\sample.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Day4\sample.txt">
+      <None Update="Day1\sample-part1.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
@@ -51,18 +39,6 @@
     <ItemGroup>
       <Content Include="..\aspire-aoc.Puzzles\Day1\input.txt">
         <Link>Day1\input.txt</Link>
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <Content Include="..\aspire-aoc.Puzzles\Day2\input.txt">
-        <Link>Day2\input.txt</Link>
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <Content Include="..\aspire-aoc.Puzzles\Day3\input.txt">
-        <Link>Day3\input.txt</Link>
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <Content Include="..\aspire-aoc.Puzzles\Day4\input.txt">
-        <Link>Day4\input.txt</Link>
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

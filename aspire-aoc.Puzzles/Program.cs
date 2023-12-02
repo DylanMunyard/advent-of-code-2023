@@ -1,8 +1,5 @@
 using aspire_aoc.Puzzles.Api;
 using aspire_aoc.Puzzles.Day1;
-using aspire_aoc.Puzzles.Day2;
-using aspire_aoc.Puzzles.Day3;
-using aspire_aoc.Puzzles.Day4;
 using aspire_aoc.Puzzles.Extensions;
 using Serilog;
 
@@ -30,9 +27,6 @@ builder.AddRedisDistributedCache("cache");
 builder.Services.AddProblemDetails();
 builder.Services.AddTransient<Api>();
 builder.Services.AddPuzzle<Day1>();
-builder.Services.AddPuzzle<Day2>();
-builder.Services.AddPuzzle<Day3>();
-builder.Services.AddPuzzle<Day4>();
 
 var app = builder.Build();
 
