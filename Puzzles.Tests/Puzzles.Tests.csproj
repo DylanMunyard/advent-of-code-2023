@@ -29,18 +29,17 @@
 
     <ItemGroup>
       <None Update="Day1\sample-part2.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="Day1\sample-part1.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Day2\sample.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="..\aspire-aoc.Puzzles\Day1\input.txt">
-        <Link>Day1\input.txt</Link>
+      <None Update="Day3\sample.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
+      </None>
     </ItemGroup>
 
 </Project>
