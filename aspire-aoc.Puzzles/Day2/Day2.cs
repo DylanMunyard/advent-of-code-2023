@@ -19,10 +19,9 @@ public class Day2 : IPuzzleService
     private (int game, IList<Play>) Game(string input)
     {
         var plays = new List<Play>();
-        input = input.Replace("Game ", string.Empty);
-        var game = int.Parse(input[..input.IndexOf(':')]); // get the game number
-        input = input[input.IndexOf(':')..].Trim();
-        var handfuls = input.Split(';'); // get each handful of cubes 
+        var details = input.Split(": ")[0];
+        var game = int.Parse(details[details.IndexOf(' ')..]); // get the game number
+        var handfuls = input.Split(": ")[1].Split(new []{"; ", ", ", " "}, StringSplitOptions.None);
         foreach (var handful in handfuls)
         {
             var play = new Play(0, 0, 0);
