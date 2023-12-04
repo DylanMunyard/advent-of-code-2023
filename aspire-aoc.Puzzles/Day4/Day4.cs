@@ -1,4 +1,4 @@
-namespace aspire_aoc.Puzzles.Day4;
+using aspire_aoc.Puzzles;
 
 public class Day4 : IPuzzleService
 {

@@ -1,4 +1,3 @@
-using aspire_aoc.Puzzles.Day3;
 using FluentAssertions;
 
 namespace Puzzles.Tests;

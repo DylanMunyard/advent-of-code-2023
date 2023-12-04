@@ -1,8 +1,4 @@
 using aspire_aoc.Puzzles.Api;
-using aspire_aoc.Puzzles.Day1;
-using aspire_aoc.Puzzles.Day2;
-using aspire_aoc.Puzzles.Day3;
-using aspire_aoc.Puzzles.Day4;
 using aspire_aoc.Puzzles.Extensions;
 using Serilog;
 

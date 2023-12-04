@@ -1,5 +1,4 @@
 ﻿using aspire_aoc.Puzzles;
-using aspire_aoc.Puzzles.Day1;
 using BenchmarkDotNet.Attributes;
 
 namespace Puzzles.Benchmarks;

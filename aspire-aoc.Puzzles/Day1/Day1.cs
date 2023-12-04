@@ -1,7 +1,5 @@
-using System.Text;
 using System.Text.RegularExpressions;
-
-namespace aspire_aoc.Puzzles.Day1;
+using aspire_aoc.Puzzles;
 
 public class Day1 : IPuzzleService
 {

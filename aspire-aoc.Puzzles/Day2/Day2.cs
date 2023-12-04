@@ -1,7 +1,6 @@
 using System.Text;
 using System.Text.RegularExpressions;
-
-namespace aspire_aoc.Puzzles.Day2;
+using aspire_aoc.Puzzles;
 
 public class Day2 : IPuzzleService
 {
@@ -14,63 +13,41 @@ public class Day2 : IPuzzleService
 
     private record Play(int Blue, int Red, int Green);
 
-    private readonly Regex _playregex = new Regex(@"(\d+) (\w+)");
-
-    private (int game, IList<Play>) Game(string input)
+    private (int Game, Play Play) Game(string input)
     {
-        var plays = new List<Play>();
         var details = input.Split(": ")[0];
         var game = int.Parse(details[details.IndexOf(' ')..]); // get the game number
         var handfuls = input.Split(": ")[1].Split(new []{"; ", ", ", " "}, StringSplitOptions.None);
-        foreach (var handful in handfuls)
+        
+        var play = new Play(0, 0, 0);
+        for (var i = 0; i < handfuls.Length; i += 2)
         {
-            var play = new Play(0, 0, 0);
-            var cubes = handful.Split(",");
-            foreach (var cube in cubes)
+            var value = int.Parse(handfuls[i]);
+            var colour = handfuls[i + 1];
+            play = colour switch
             {
-                var match = _playregex.Matches(cube);
-                var number = int.Parse(match[0].Groups[1].Value);
-                var colour = match[0].Groups[2].Value;
-                play = colour switch
-                {
-                    "blue" => play with { Blue = play.Blue + number },
-                    "red" => play with { Red = play.Red + number },
-                    "green" => play with { Green = play.Green + number },
-                    _ => throw new Exception("Unknown colour")
-                };
-            }
-
-            plays.Add(play);
+                "blue" => play with { Blue = value > play.Blue ? value : play.Blue },
+                "red" => play with { Red = value > play.Red ? value : play.Red },
+                "green" => play with { Green = value > play.Green ? value : play.Green },
+                _ => throw new Exception("Unknown colour")
+            };
         }
 
-        return (game, plays);
-    }
-
-    private int MeetsCondition((int number, IList<Play> plays) game)
-    {
-        var (gameNumber, plays) = game;
-
-        return plays.All(x => x.Red <= 12) &&
-               plays.All(x => x.Green <= 13) &&
-               plays.All(x => x.Blue <= 14)
-            ? gameNumber
-            : 0;
-    }
-
-    private int MinimumPlay((int number, IList<Play> plays) game)
-    {
-        var (_, plays) = game;
-        var play = new Play(plays.Max(x => x.Blue), plays.Max(x => x.Red), plays.Max(x => x.Green));
-        return play.Blue * play.Red * play.Green;
+        return (game, play);
     }
 
     public async Task<int> SolvePart1(bool solveSample)
     {
-        return (await _puzzleService.PuzzleInput(solveSample, 1)).Sum(x => MeetsCondition(Game(x)));
+        return (await _puzzleService.PuzzleInput(solveSample, 1))
+            .Select(Game)
+            .Where(game => game.Play is { Red: <= 12, Green: <= 13, Blue: <= 14 })
+            .Sum(x => x.Game);
     }
 
     public async Task<int> SolvePart2(bool solveSample)
     {
-        return (await _puzzleService.PuzzleInput(solveSample, 2)).Sum(x => MinimumPlay(Game(x)));
+        return (await _puzzleService.PuzzleInput(solveSample, 1))
+            .Select(Game)
+            .Sum(game => game.Play.Blue * game.Play.Red * game.Play.Green);
     }
 }
