@@ -17,7 +17,7 @@ public class Api
         _logger = Log.ForContext<Api>();
     }
     
-    public async Task<int> Handler(int day, int part)
+    public async Task<string> Handler(int day, int part)
     {
         _logger.Information("Solving day {Day} part {Part}", day, part);
 
@@ -26,7 +26,7 @@ public class Api
         if (cached?.Length > 0)
         {
             _logger.Information("Puzzle cache hit! {PuzzleKey}", cacheKey);
-            return int.Parse(System.Text.Encoding.UTF8.GetString(cached, 0, cached.Length));
+            return System.Text.Encoding.UTF8.GetString(cached, 0, cached.Length);
         }
         
         IPuzzleService puzzleService;
@@ -37,7 +37,7 @@ public class Api
         catch (InvalidOperationException ex)
         {
             _logger.Error(ex, "There's no puzzle service for day {Day}", day);
-            return 0;
+            return "0";
         }
 
         try
@@ -48,13 +48,13 @@ public class Api
                 2 => await puzzleService.SolvePart2(false),
                 _ => throw new ArgumentOutOfRangeException(nameof(part), part, "What part am I solving? 1 or 2?")
             };
-            await _cache.SetAsync(cacheKey, System.Text.Encoding.UTF8.GetBytes(solution.ToString()));
+            await _cache.SetAsync(cacheKey, System.Text.Encoding.UTF8.GetBytes(solution));
             return solution;
         }
         catch (NotImplementedException ex)
         {
             _logger.Error(ex, "lazy! day {Day} part {Part} not implemented", day, part);
-            return 0;
+            return "0";
         }
     }
 }

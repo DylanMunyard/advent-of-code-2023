@@ -41,14 +41,14 @@ public class Day4 : IPuzzleService
         return weight.Values.Sum();
     }
 
-    public async Task<int> SolvePart1(bool solveSample)
+    public async Task<string> SolvePart1(bool solveSample)
     {
-        return (await _puzzleService.PuzzleInput(solveSample, 1)).Sum(x => (int)Math.Pow(2, Score(x) - 1));
+        return (await _puzzleService.InputAsLines(solveSample, 1)).Sum(x => (int)Math.Pow(2, Score(x) - 1)).ToString();
     }
 
-    public async Task<int> SolvePart2(bool solveSample)
+    public async Task<string> SolvePart2(bool solveSample)
     {
-        var cards = await _puzzleService.PuzzleInput(solveSample, 2);
-        return WinningCards(cards);
+        var cards = await _puzzleService.InputAsLines(solveSample, 2);
+        return WinningCards(cards).ToString();
     }
 }

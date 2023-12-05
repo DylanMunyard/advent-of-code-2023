@@ -68,15 +68,15 @@ public class Day3 : IPuzzleService
         return points.Any(x => Math.Abs(x.X - point.X) <= 1 && Math.Abs(x.Y - point.Y) <= 1);
     }
 
-    public async Task<int> SolvePart1(bool solveSample)
+    public async Task<string> SolvePart1(bool solveSample)
     {
-        var (p1, _) = Solve(await _puzzleService.PuzzleInput(solveSample, 1));
-        return p1;
+        var (p1, _) = Solve(await _puzzleService.InputAsLines(solveSample, 1));
+        return p1.ToString();
     }
 
-    public async Task<int> SolvePart2(bool solveSample)
+    public async Task<string> SolvePart2(bool solveSample)
     {
-        var (_, p2) = Solve(await _puzzleService.PuzzleInput(solveSample, 2));
-        return p2;
+        var (_, p2) = Solve(await _puzzleService.InputAsLines(solveSample, 2));
+        return p2.ToString();
     }
 }

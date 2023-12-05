@@ -1,19 +1,15 @@
+using aspire_aoc.Puzzles.Day5;
 using FluentAssertions;
 
 namespace Puzzles.Tests;
 
-public class Day2Tests
+public class Day5Tests
 {
-    private readonly Day2 _puzzle;
+    private readonly Day5 _puzzle = new();
 
-    public Day2Tests()
-    {
-        _puzzle = new Day2();
-    }
-    
     [Theory]
-    [InlineData(true, "8")]
-    [InlineData(false, "2486")]
+    [InlineData(true, "35")]
+    [InlineData(false, "318728750")]
     public async Task Part1(bool solveSample, string answer)
     {
         // Act
@@ -24,8 +20,8 @@ public class Day2Tests
     }
     
     [Theory]
-    [InlineData(true, "2286")]
-    [InlineData(false, "87984")]
+    [InlineData(true, "46")]
+    [InlineData(false, "37384986")]
     public async Task Part2(bool solveSample, string answer)
     {
         // Act

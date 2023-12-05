@@ -1,5 +1,3 @@
-using System.Text;
-using System.Text.RegularExpressions;
 using aspire_aoc.Puzzles;
 
 public class Day2 : IPuzzleService
@@ -36,18 +34,20 @@ public class Day2 : IPuzzleService
         return (game, play);
     }
 
-    public async Task<int> SolvePart1(bool solveSample)
+    public async Task<string> SolvePart1(bool solveSample)
     {
-        return (await _puzzleService.PuzzleInput(solveSample, 1))
+        return (await _puzzleService.InputAsLines(solveSample, 1))
             .Select(Game)
             .Where(game => game.Play is { Red: <= 12, Green: <= 13, Blue: <= 14 })
-            .Sum(x => x.Game);
+            .Sum(x => x.Game)
+            .ToString();
     }
 
-    public async Task<int> SolvePart2(bool solveSample)
+    public async Task<string> SolvePart2(bool solveSample)
     {
-        return (await _puzzleService.PuzzleInput(solveSample, 1))
+        return (await _puzzleService.InputAsLines(solveSample, 1))
             .Select(Game)
-            .Sum(game => game.Play.Blue * game.Play.Red * game.Play.Green);
+            .Sum(game => game.Play.Blue * game.Play.Red * game.Play.Green)
+            .ToString();
     }
 }

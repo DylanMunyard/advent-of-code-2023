@@ -12,9 +12,9 @@ public class Day1Tests
     }
     
     [Theory]
-    [InlineData(true, 142)]
-    [InlineData(false, 56108)]
-    public async Task Part1(bool solveSample, int answer)
+    [InlineData(true, "142")]
+    [InlineData(false, "56108")]
+    public async Task Part1(bool solveSample, string answer)
     {
         // Act
         var solution = await _puzzle.SolvePart1(solveSample);
@@ -24,9 +24,9 @@ public class Day1Tests
     }
     
     [Theory]
-    [InlineData(true, 281)]
-    [InlineData(false, 55652)]
-    public async Task Part2(bool solveSample, int answer)
+    [InlineData(true, "281")]
+    [InlineData(false, "55652")]
+    public async Task Part2(bool solveSample, string answer)
     {
         // Act
         var solution = await _puzzle.SolvePart2(solveSample);

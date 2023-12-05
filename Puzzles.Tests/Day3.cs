@@ -7,9 +7,9 @@ public class Day3Tests
     private readonly Day3 _puzzle = new();
 
     [Theory]
-    [InlineData(true, 4361)]
-    [InlineData(false, 525181)]
-    public async Task Part1(bool solveSample, int answer)
+    [InlineData(true, "4361")]
+    [InlineData(false, "525181")]
+    public async Task Part1(bool solveSample, string answer)
     {
         // Act
         var solution = await _puzzle.SolvePart1(solveSample);
@@ -19,9 +19,9 @@ public class Day3Tests
     }
     
     [Theory]
-    [InlineData(true, 467835)]
-    [InlineData(false, 84289137)]
-    public async Task Part2(bool solveSample, int answer)
+    [InlineData(true, "467835")]
+    [InlineData(false, "84289137")]
+    public async Task Part2(bool solveSample, string answer)
     {
         // Act
         var solution = await _puzzle.SolvePart2(solveSample);

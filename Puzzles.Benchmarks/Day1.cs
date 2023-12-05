@@ -16,8 +16,8 @@ public class Day1Tests
     }
 
     [Benchmark]
-    public Task<int> Part1Benchmark() => _puzzle.SolvePart1(false);
+    public Task<string> Part1Benchmark() => _puzzle.SolvePart1(false);
 
     [Benchmark]
-    public Task<int> Part2Benchmark() => _puzzle.SolvePart1(false);
+    public Task<string> Part2Benchmark() => _puzzle.SolvePart1(false);
 }

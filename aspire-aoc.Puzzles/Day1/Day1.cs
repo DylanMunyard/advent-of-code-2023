@@ -66,13 +66,13 @@ public class Day1 : IPuzzleService
         _puzzleService = new PuzzleService(this);
     }
 
-    public async Task<int> SolvePart1(bool solveSample)
+    public async Task<string> SolvePart1(bool solveSample)
     {
-        return (await _puzzleService.PuzzleInput(solveSample, 1)).Sum(Digits);
+        return (await _puzzleService.InputAsLines(solveSample, 1)).Sum(Digits).ToString();
     }
 
-    public async Task<int> SolvePart2(bool solveSample)
+    public async Task<string> SolvePart2(bool solveSample)
     {
-        return (await _puzzleService.PuzzleInput(solveSample, 2)).Sum(DigitsOrWords);
+        return (await _puzzleService.InputAsLines(solveSample, 2)).Sum(DigitsOrWords).ToString();
     }
 }
