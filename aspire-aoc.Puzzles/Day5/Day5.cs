@@ -11,41 +11,37 @@ public class Day5 : IPuzzleService
         _puzzleService = new PuzzleService(this);
     }
 
-    private (long Part1, long Part2) Solve(string[] input)
+    private class Map
     {
-        var seeds = input[0].Substring("seeds: ".Length).Split(new [] { "  ", " " }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
-        
-        var maps = new Dictionary<string, List<(long Source, long Range, long Diff)>>();
-        var mappingKey = "";
-        foreach (var line in input[2..])
+        private List<(long Dest, long Source, long Range)> Tuples { get; } = [];
+
+        public Map(string maps)
         {
-            if (string.IsNullOrEmpty(line)) continue;
-            
-            if (!line.EndsWith("map:"))
-            {
-                var range = line.Split(new[] { "  ", " " }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
-                maps[mappingKey].Add((range[1], range[2], range[0] - range[1]));
-            }
-            else
-            {
-                mappingKey = line.Replace(" map:", "");
-                maps.TryAdd(mappingKey, []);
-            }
+            Tuples.AddRange(maps.Split('\n')[1..].Select(x => x.Split())
+                .Select(x => (long.Parse(x[0]), long.Parse(x[1]), long.Parse(x[2]))));
         }
 
-        long part1 = long.MaxValue;
-        foreach (var seed in seeds)
+        public long ApplyOne(long seed)
         {
-            var location = seed;
-            foreach (var map in maps)
+            foreach (var tuple in Tuples)
             {
-                location += map.Value.FirstOrDefault(x => location >= x.Source && location < x.Source + x.Range).Diff;
+                if (seed >= tuple.Source && seed < tuple.Source + tuple.Range)
+                    return seed + tuple.Dest - tuple.Source;
             }
 
-            part1 = part1 < location ? part1 : location;
+            return seed;
         }
+    }
 
-        var seedRanges = new List<(long Source, long Range)>();
+    private (long Part1, long Part2) Solve(string input)
+    {
+        var parts = input.Split($"{Environment.NewLine}{Environment.NewLine}");
+        var seeds = parts[0]["seeds: ".Length..].Split(new [] { "  ", " " }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
+
+        var mappings = parts[1..].Select(x => new Map(x)).ToList();
+        var p1 = seeds.Select(seed => mappings.Aggregate(seed, (current, map) => map.ApplyOne(current))).ToList();
+
+        /*var seedRanges = new List<(long Source, long Range)>();
         for (var i = 0; i < seeds.Length; i += 2)
         {
             seedRanges.Add((seeds[i], seeds[i] + seeds[i + 1]));
@@ -68,20 +64,20 @@ public class Day5 : IPuzzleService
             }
 
             locations.Add(min);
-        });
+        });*/
 
-        return (part1, locations.Min());
+        return (p1.Min(), 0);
     }
 
     public async Task<string> SolvePart1(bool solveSample)
     {
-        var (part1, _) = Solve(await _puzzleService.InputAsLines(solveSample, 1));
+        var (part1, _) = Solve(await _puzzleService.InputAsString(solveSample, 1));
         return part1.ToString();
     }
 
     public async Task<string> SolvePart2(bool solveSample)
     {
-        var (_, part2) = Solve(await _puzzleService.InputAsLines(solveSample, 2));
+        var (_, part2) = Solve(await _puzzleService.InputAsString(solveSample, 2));
         return part2.ToString();
     }
 }
