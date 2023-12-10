@@ -9,13 +9,18 @@ public class DayX : IPuzzleService
         _puzzleService = new PuzzleService(this);
     }
 
+    public (int P1, int P2) Solve(string input)
+    {
+        return (0, 0);
+    }
+
     public async Task<string> SolvePart1(bool solveSample)
     {
-        return (await _puzzleService.InputAsLines(solveSample, 1)).Length.ToString();
+        return Solve(await _puzzleService.InputAsString(solveSample, 1)).P1.ToString();
     }
 
     public async Task<string> SolvePart2(bool solveSample)
     {
-        return (await _puzzleService.InputAsLines(solveSample, 2)).Length.ToString();
+        return Solve(await _puzzleService.InputAsString(solveSample, 1)).P2.ToString();
     }
 }
