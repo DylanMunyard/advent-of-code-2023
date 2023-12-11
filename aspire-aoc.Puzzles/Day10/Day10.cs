@@ -49,7 +49,7 @@ public class Day10 : IPuzzleService
             }
         }
         
-        // Now we have S, time to find the path?
+        // Now we have S, time to find the circuit
         var circuits =
             new List<(int x, int y)> { (s.x + 1, s.y), (s.x - 1, s.y), (s.x, s.y + 1), (s.x, s.y - 1) }
                 .Select(x => Circuit(x, s));
@@ -58,7 +58,7 @@ public class Day10 : IPuzzleService
     }
     
     // depth first search for a closed circuit
-    private ICollection<(int x, int y)> Circuit((int x, int y) p, (int x, int y) lp)
+    private List<(int x, int y)> Circuit((int x, int y) p, (int x, int y) lp)
     {
         var v = new List<(int x, int y)>();
         while (true)
