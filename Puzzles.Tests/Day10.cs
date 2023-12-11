@@ -1,14 +1,14 @@
-using aspire_aoc.Puzzles.Day9;
+using aspire_aoc.Puzzles.Day10;
 using FluentAssertions;
 
 namespace Puzzles.Tests;
 
-public class Day9Tests
+public class Day10Tests
 {
-    private readonly Day9 _puzzle = new();
+    private readonly Day10 _puzzle = new();
 
     [Theory]
-    [InlineData(true, "114")]
+    [InlineData(true, "8")]
     [InlineData(false, "1798691765")]
     public async Task Part1(bool solveSample, string answer)
     {

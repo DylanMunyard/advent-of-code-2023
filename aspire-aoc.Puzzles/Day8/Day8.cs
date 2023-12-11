@@ -71,7 +71,7 @@ public class Day8 : IPuzzleService
                 
                 if (stepCounts.Count == starting.Count)
                 {
-                    return findlcm(stepCounts.Values.Select(x => long.Parse(x.ToString())).ToList());
+                    return FindLcm(stepCounts.Values.Select(x => long.Parse(x.ToString())).ToList());
                 }
             }
 
@@ -81,23 +81,23 @@ public class Day8 : IPuzzleService
         }
     }
     
-    static long gcf(long a, long b)
+    static long Gcf(long a, long b)
     {
         while (b != 0)
         {
-            long temp = b;
+            var temp = b;
             b = a % b;
             a = temp;
         }
         return a;
     }
 
-    static long findlcm(List<long> steps)
+    static long FindLcm(List<long> steps)
     {
         long answer = 1;
         foreach (var step in steps)
         {
-            answer = answer * step / gcf(step, answer);
+            answer = answer * step / Gcf(step, answer);
         }
 
         return answer;
