@@ -21,6 +21,6 @@ public class DayX : IPuzzleService
 
     public async Task<string> SolvePart2(bool solveSample)
     {
-        return Solve(await _puzzleService.InputAsString(solveSample, 1)).P2.ToString();
+        return Solve(await _puzzleService.InputAsString(solveSample, 2)).P2.ToString();
     }
 }

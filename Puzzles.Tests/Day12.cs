@@ -1,15 +1,15 @@
-using aspire_aoc.Puzzles.Day11;
+using aspire_aoc.Puzzles.Dayx;
 using FluentAssertions;
 
 namespace Puzzles.Tests;
 
-public class Day11Tests
+public class Day12Tests
 {
-    private readonly Day11 _puzzle = new();
+    private readonly Day12 _puzzle = new();
 
     [Theory]
-    [InlineData(true, "374")]
-    [InlineData(false, "9686930")]
+    [InlineData(true, "21")]
+    [InlineData(false, "25004")] // 7879 is too high
     public async Task Part1(bool solveSample, string answer)
     {
         // Act
@@ -20,8 +20,8 @@ public class Day11Tests
     }
     
     [Theory]
-    [InlineData(true, "82000210")]
-    [InlineData(false, "630728425490")]
+    [InlineData(true, "30")]
+    [InlineData(false, "84289137")]
     public async Task Part2(bool solveSample, string answer)
     {
         // Act
