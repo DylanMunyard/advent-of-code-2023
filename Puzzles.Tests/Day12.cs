@@ -9,7 +9,7 @@ public class Day12Tests
 
     [Theory]
     [InlineData(true, "21")]
-    [InlineData(false, "25004")] // 7879 is too high
+    [InlineData(false, "7361")]
     public async Task Part1(bool solveSample, string answer)
     {
         // Act
@@ -20,8 +20,8 @@ public class Day12Tests
     }
     
     [Theory]
-    [InlineData(true, "30")]
-    [InlineData(false, "84289137")]
+    [InlineData(true, "525152")]
+    [InlineData(false, "84289137")] // 16325541445 is too low
     public async Task Part2(bool solveSample, string answer)
     {
         // Act
